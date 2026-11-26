@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "name": "Vani Official",
+  "description": "First-party optional runtime extensions for Vani.",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "generatedAt": "2026-11-26T12:17:39.777Z",
+  "plugins": [
+    {
+      "id": "csv-table-viewer",
+      "name": "CSV Table",
+      "version": "1.0.0",
+      "description": "Explore CSV files as interactive, sortable, and filterable tables with automatic numeric sorting.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/csv-table-viewer-v1.0.0/csv-table-viewer-1.0.0.zip",
+      "sha256": "6d7fa13d02fb2389c0eea05a05449c9ac2a03961ecf40ecb7e8683d783505b55",
+      "size": 2265971,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/csv-table-viewer-v1.0.0"
+    },
+    {
+      "id": "image-markup",
+      "name": "Image Markup",
+      "version": "1.0.0",
+      "description": "Inspect, zoom, and annotate images with pen, arrow, and box markups, then export a full-resolution PNG copy.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/image-markup-v1.0.0/image-markup-1.0.0.zip",
+      "sha256": "861945c37d3a65bba08e024a6d8f35b547c960e6748a0c3df479d6fadf48b19b",
+      "size": 396923,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/image-markup-v1.0.0"
+    },
+    {
+      "id": "pdf-reader",
+      "name": "PDF Reader",
+      "version": "1.0.0",
+      "description": "Read multi-page PDF documents completely offline with on-demand byte streaming, zoom, and text selection.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/pdf-reader-v1.0.0/pdf-reader-1.0.0.zip",
+      "sha256": "0b4f25fda9e1e9d9112378f52f4a4032e178311f964c220233cc5abda5d3e60f",
+      "size": 2828536,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/pdf-reader-v1.0.0"
+    },
+    {
+      "id": "workspace-files-summary",
+      "name": "Workspace Files Summary",
+      "version": "1.0.0",
+      "description": "Group workspace files by extension in a dedicated Workbench panel and jump straight to any file.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/workspace-files-summary-v1.0.0/workspace-files-summary-1.0.0.zip",
+      "sha256": "dbb2039e3d8b86836596a4a13bff0eee5aa2113b2e7521e0cc2e3efcb644c4cc",
+      "size": 799570,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/workspace-files-summary-v1.0.0"
+    }
+  ]
+}

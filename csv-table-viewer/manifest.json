@@ -3,6 +3,33 @@
   "id": "csv-table-viewer",
   "name": "CSV Table",
   "version": "1.0.0",
+  "description": "Explore CSV files as interactive, sortable, and filterable tables with automatic numeric sorting.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-table-light.png",
+        "dark": "media/screenshot-table-dark.png"
+      },
+      "caption": "Inspect multi-column CSV files in a clean, theme-aware table view",
+      "alt": "CSV Table displaying a multi-column benchmark dataset with sortable headers"
+    },
+    {
+      "src": {
+        "light": "media/screenshot-filter-light.png",
+        "dark": "media/screenshot-filter-dark.png"
+      },
+      "caption": "Filter rows instantly and sort numeric columns ascending or descending",
+      "alt": "CSV Table filtered to matching US rows and sorted descending by P95 latency"
+    }
+  ],
+  "readme": "README.md",
   "vaniApiVersion": "1",
   "runtime": "ui",
   "entry": "src/index.tsx",

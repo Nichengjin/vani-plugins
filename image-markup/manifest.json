@@ -3,8 +3,34 @@
   "id": "image-markup",
   "name": "Image Markup",
   "version": "1.0.0",
+  "description": "Inspect, zoom, and annotate images with pen, arrow, and box markups, then export a full-resolution PNG copy.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-canvas-light.png",
+        "dark": "media/screenshot-canvas-dark.png"
+      },
+      "caption": "Fit-to-window canvas with zoom and markup toolbar",
+      "alt": "Image Markup displaying a workspace architecture diagram fitted to the canvas with pen, arrow, box, color, undo, redo, and zoom controls."
+    },
+    {
+      "src": {
+        "light": "media/screenshot-annotated-light.png",
+        "dark": "media/screenshot-annotated-dark.png"
+      },
+      "caption": "Highlight box and arrow callouts ready for full-resolution PNG export",
+      "alt": "Image Markup with a highlight box and arrow callout drawn directly on the diagram canvas."
+    }
+  ],
+  "readme": "README.md",
   "vaniApiVersion": "1",
-  "description": "Zoom, mark up and save a PNG copy of an image.",
   "runtime": "ui",
   "entry": "src/index.js",
   "overrides": [{ "slot": "file.viewer", "match": { "extensions": ["png", "jpeg", "jpg", "webp", "avif", "bmp"] } }],

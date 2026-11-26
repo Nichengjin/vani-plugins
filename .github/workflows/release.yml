@@ -1,0 +1,106 @@
+name: Release Extensions Feed
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'feed.json'
+      - 'README.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-extensions-feed
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+
+      - name: Build deterministic archives and feed.json
+        run: >
+          node scripts/build-feed.mjs
+          --out-dir dist/feed
+          --repo "${{ github.repository }}"
+          --preserve-existing feed.json
+
+      - name: Publish new plugin releases and reconcile feed.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          node -e '
+            const fs = require("node:fs")
+            const { execFileSync } = require("node:child_process")
+            const built = JSON.parse(fs.readFileSync("dist/feed/feed.json", "utf8"))
+            const existing = fs.existsSync("feed.json")
+              ? JSON.parse(fs.readFileSync("feed.json", "utf8"))
+              : { plugins: [] }
+            const existingByKey = new Map(
+              (existing.plugins || []).map(p => [`${p.id}@${p.version}`, p])
+            )
+            const finalPlugins = []
+            for (const plugin of built.plugins) {
+              const tag = `${plugin.id}-v${plugin.version}`
+              const filename = `${plugin.id}-${plugin.version}.zip`
+              const zipPath = `dist/feed/archives/${filename}`
+              let exists = false
+              try {
+                execFileSync("gh", ["release", "view", tag], { stdio: "ignore" })
+                exists = true
+              } catch {}
+              if (exists) {
+                const published = existingByKey.get(`${plugin.id}@${plugin.version}`)
+                if (published) {
+                  if (published.sha256 !== plugin.sha256) {
+                    console.log(`::warning::${tag} is already released; keeping published sha256. Bump manifest.json version to publish changes.`)
+                  }
+                  finalPlugins.push(published)
+                } else {
+                  console.log(`Release ${tag} already exists without a feed.json entry; keeping built metadata.`)
+                  finalPlugins.push(plugin)
+                }
+                continue
+              }
+              const notes = [
+                plugin.releaseNotes || plugin.description || `Release ${plugin.name} v${plugin.version}.`,
+                "",
+                `SHA-256: \`${plugin.sha256}\``
+              ].join("\n")
+              console.log(`Creating release ${tag} with ${filename}...`)
+              execFileSync("gh", [
+                "release", "create", tag, zipPath,
+                "--title", `${plugin.name} v${plugin.version}`,
+                "--notes", notes
+              ], { stdio: "inherit" })
+              finalPlugins.push(plugin)
+            }
+            const nextFeed = { ...built, plugins: finalPlugins }
+            const strip = doc => JSON.stringify({ ...doc, generatedAt: undefined })
+            if (existing.generatedAt && strip(existing) === strip(nextFeed)) {
+              nextFeed.generatedAt = existing.generatedAt
+            }
+            fs.writeFileSync("feed.json", JSON.stringify(nextFeed, null, 2) + "\n")
+          '
+
+      - name: Commit feed.json if changed
+        run: |
+          if git diff --quiet feed.json; then
+            echo "feed.json is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.json
+          git commit -m "chore(feed): update feed.json [skip ci]"
+          git push origin HEAD:main

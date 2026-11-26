@@ -3,10 +3,36 @@
   "id": "pdf-reader",
   "name": "PDF Reader",
   "version": "1.0.0",
+  "description": "Read multi-page PDF documents completely offline with on-demand byte streaming, zoom, and text selection.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-reading-light.png",
+        "dark": "media/screenshot-reading-dark.png"
+      },
+      "caption": "Offline PDF rendering with page controls and fit-page reading view",
+      "alt": "PDF Reader displaying page 1 of a multi-page PDF document with page navigation and fit-page view."
+    },
+    {
+      "src": {
+        "light": "media/screenshot-zoom-light.png",
+        "dark": "media/screenshot-zoom-dark.png"
+      },
+      "caption": "Multi-page navigation with fit-width zoom and selectable text layer",
+      "alt": "PDF Reader displaying page 2 at fit-width zoom with crisp typography and live text selection."
+    }
+  ],
+  "readme": "README.md",
   "vaniApiVersion": "1",
   "runtime": "ui",
   "entry": "src/reader.js",
-  "description": "Read PDF pages in the workspace, offline.",
   "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".pdf"] } }],
   "capabilities": ["file.active.readBytes"]
 }

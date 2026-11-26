@@ -3,6 +3,29 @@
   "id": "workspace-files-summary",
   "name": "Workspace Files Summary",
   "version": "1.0.0",
+  "description": "Group workspace files by extension in a dedicated Workbench panel and jump straight to any file.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-workbench-light.png",
+        "dark": "media/screenshot-workbench-dark.png"
+      },
+      "caption": "Browse workspace files grouped by extension with live file counts",
+      "alt": "Workspace Files Summary displaying collapsible file extension groups with counts"
+    },
+    {
+      "src": {
+        "light": "media/screenshot-narrow-light.png",
+        "dark": "media/screenshot-narrow-dark.png"
+      },
+      "caption": "Fits cleanly inside Vani's right-hand Workbench pane for one-click navigation",
+      "alt": "Workspace Files Summary rendered in a narrow Workbench column layout"
+    }
+  ],
+  "readme": "README.md",
   "vaniApiVersion": "1",
   "runtime": "ui",
   "entry": "src/index.tsx",

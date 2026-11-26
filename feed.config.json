@@ -1,0 +1,6 @@
+{
+  "name": "Vani Official",
+  "description": "First-party optional runtime extensions for Vani.",
+  "repository": "Nichengjin/vani-plugins",
+  "pluginsDir": "."
+}
