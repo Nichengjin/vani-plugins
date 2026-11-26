@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "workspace-files-summary",
+  "name": "Workspace Files Summary",
+  "version": "1.0.0",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/index.tsx",
+  "contributes": { "workbenchPanes": [{ "id": "summary", "title": "Summary" }] },
+  "capabilities": ["workspace.files.read", "ui.navigate"]
+}

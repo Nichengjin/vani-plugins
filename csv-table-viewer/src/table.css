@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 12px 16px;
+  background: var(--background);
+  color: var(--foreground);
+  font: 13px var(--font-ui);
+}
+
+input, button {
+  font: inherit;
+  color: inherit;
+}
+
+input {
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  padding: 5px 8px;
+  max-width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+}
+
+input:focus-visible, button:focus-visible {
+  outline: 2px solid var(--focus);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+}
+
+th {
+  background: var(--surface-secondary);
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+}

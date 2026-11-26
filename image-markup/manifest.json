@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "image-markup",
+  "name": "Image Markup",
+  "version": "1.0.0",
+  "vaniApiVersion": "1",
+  "description": "Zoom, mark up and save a PNG copy of an image.",
+  "runtime": "ui",
+  "entry": "src/index.js",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": ["png", "jpeg", "jpg", "webp", "avif", "bmp"] } }],
+  "capabilities": ["file.active.readBytes", "file.export"]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "csv-table-viewer",
+  "name": "CSV Table",
+  "version": "1.0.0",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/index.tsx",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".csv"] } }],
+  "capabilities": ["file.active.read"]
+}

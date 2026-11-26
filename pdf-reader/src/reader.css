@@ -1,0 +1,68 @@
+* { box-sizing: border-box; }
+html, body { width: 100%; height: 100%; margin: 0; }
+body {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  position: relative;
+  overflow: hidden;
+  background: var(--background, Canvas);
+  color: var(--foreground, CanvasText);
+  font: 13px/1.4 var(--font-ui, system-ui), sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+header, .pagination { display: flex; align-items: center; }
+header {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 5px clamp(6px, 2vw, 18px);
+  background: var(--surface, Canvas);
+  border-bottom: 1px solid var(--border, ButtonBorder);
+}
+.pagination { gap: 4px; }
+button, input, select { font: inherit; color: inherit; }
+button, #page, #zoom { min-height: 28px; border-radius: var(--radius-control, 5px); }
+button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+button svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+button:not(:disabled):hover { background: var(--default, ButtonFace); }
+:disabled { opacity: .4; cursor: default; }
+#page, #zoom { border: 1px solid var(--field-border, ButtonBorder); background: var(--field-background, Field); }
+#page { width: 5ch; padding: 2px; text-align: center; }
+#zoom { max-width: 100%; padding-inline: 6px; }
+.slash { color: var(--muted, GrayText); }
+:focus-visible { outline: 2px solid var(--focus, Highlight); outline-offset: 1px; }
+main {
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
+  padding: clamp(8px, 2vw, 24px);
+  background: var(--surface-secondary, Canvas);
+}
+main:focus-visible { outline-offset: -2px; }
+#paper {
+  position: relative;
+  margin: 0 auto;
+  overflow: clip;
+  --scale-round-x: 1px;
+  --scale-round-y: 1px;
+  background: white;
+  box-shadow: 0 0 0 1px var(--border, ButtonBorder), 0 2px 5px #0001;
+}
+canvas { display: block; width: 100%; height: 100%; }
+#status:not(.visually-hidden) {
+  grid-row: 2;
+  position: absolute;
+  inset-inline: 12px;
+  top: 24px;
+  margin: 0;
+  text-align: center;
+}
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }

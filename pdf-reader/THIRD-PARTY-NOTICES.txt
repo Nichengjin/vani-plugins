@@ -1,0 +1,19 @@
+PDF Reader includes Mozilla PDF.js 6.5.438 (Apache License 2.0), distributed
+as pdfjs-dist: https://github.com/mozilla/pdf.js/tree/v6.5.438
+
+vendor/ contains the browser library, its parsing code, JavaScript-only image
+decoders, text-selection styles, Adobe CMaps and Foxit/Liberation standard
+fonts. Upstream license and copyright notices are in vendor/licenses/.
+
+The parser is modified to statically bundle its JPEG 2000 and JBIG2/CCITT
+decoder imports, limit coalesced file reads, and handle cancellation during
+document loading. No PDF scripting engine or Wasm binary is shipped.
+
+All vendored bytes, including these adaptations, can be regenerated with
+Python 3.9+ from the repository root:
+
+  python3 scripts/prepare-pdf-reader.py [pdfjs-dist-6.5.438.tgz]
+
+The script checks the pinned npm SHA-512 integrity before reading any member
+of the archive. It is for maintainers; importing this folder needs neither
+an installation step nor a connection to the registry.

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "id": "pdf-reader",
+  "name": "PDF Reader",
+  "version": "1.0.0",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/reader.js",
+  "description": "Read PDF pages in the workspace, offline.",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".pdf"] } }],
+  "capabilities": ["file.active.readBytes"]
+}
