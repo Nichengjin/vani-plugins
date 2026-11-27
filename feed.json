@@ -3,7 +3,7 @@
   "name": "Vani Official",
   "description": "First-party optional runtime extensions for Vani.",
   "homepage": "https://github.com/Nichengjin/vani-plugins",
-  "generatedAt": "2026-11-27T06:58:52.401Z",
+  "generatedAt": "2026-11-27T08:46:14.854Z",
   "plugins": [
     {
       "id": "csv-table-viewer",
@@ -20,6 +20,20 @@
       "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/csv-table-viewer-v1.1.0"
     },
     {
+      "id": "excel-reader",
+      "name": "Excel Reader",
+      "version": "1.0.0",
+      "description": "Inspect Excel workbooks (.xlsx, .xls, .ods) offline with multi-sheet tabs, formula inspection, search filtering, and column sorting.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/excel-reader-v1.0.0/excel-reader-1.0.0.zip",
+      "sha256": "1bd9ce04df672c367ba14704d79e42e58486b1a77c2eee58574a8fbfbef08f5e",
+      "size": 974162,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/excel-reader-v1.0.0"
+    },
+    {
       "id": "image-markup",
       "name": "Image Markup",
       "version": "1.1.0",
@@ -34,6 +48,20 @@
       "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/image-markup-v1.1.0"
     },
     {
+      "id": "markdown-editor",
+      "name": "Markdown Editor",
+      "version": "1.0.0",
+      "description": "Edit Markdown files inline with a Tiptap rich-text editor, synchronized source view, and safe conflict-checked saving.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/markdown-editor-v1.0.0/markdown-editor-1.0.0.zip",
+      "sha256": "766f6dca8cb9352fe0cc2a9cafbd6eb142f4f56802121ff48a542f70951b09cf",
+      "size": 1127666,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/markdown-editor-v1.0.0"
+    },
+    {
       "id": "pdf-reader",
       "name": "PDF Reader",
       "version": "1.1.0",
@@ -46,6 +74,34 @@
       "size": 2857589,
       "homepage": "https://github.com/Nichengjin/vani-plugins",
       "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/pdf-reader-v1.1.0"
+    },
+    {
+      "id": "ppt-reader",
+      "name": "PPT Reader",
+      "version": "1.0.0",
+      "description": "View PowerPoint (.pptx) presentations completely offline with slide thumbnails, proportional stage rendering, speaker notes, and zoom controls.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/ppt-reader-v1.0.0/ppt-reader-1.0.0.zip",
+      "sha256": "f40fca4e3981908a10d819e7d2c82f866a53271017d4c387ea1b900e6c7b4d4b",
+      "size": 939105,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/ppt-reader-v1.0.0"
+    },
+    {
+      "id": "word-reader",
+      "name": "Word Reader",
+      "version": "1.0.0",
+      "description": "Read Word (.docx) documents completely offline with a document outline, in-document search, and embedded images.",
+      "author": "Vani",
+      "vaniApiVersion": "1",
+      "runtime": "ui",
+      "archiveUrl": "https://github.com/Nichengjin/vani-plugins/releases/download/word-reader-v1.0.0/word-reader-1.0.0.zip",
+      "sha256": "7190d9e1346e335a811c017662de04b0202122bd44cca555d4480666ca704147",
+      "size": 1308875,
+      "homepage": "https://github.com/Nichengjin/vani-plugins",
+      "releaseUrl": "https://github.com/Nichengjin/vani-plugins/releases/tag/word-reader-v1.0.0"
     },
     {
       "id": "workspace-files-summary",
