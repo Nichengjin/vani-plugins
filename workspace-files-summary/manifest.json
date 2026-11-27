@@ -2,11 +2,15 @@
   "schemaVersion": 1,
   "id": "workspace-files-summary",
   "name": "Workspace Files Summary",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Group workspace files by extension in a dedicated Workbench panel and jump straight to any file.",
   "author": "Vani",
   "homepage": "https://github.com/Nichengjin/vani-plugins",
   "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
   "screenshots": [
     {
       "src": {

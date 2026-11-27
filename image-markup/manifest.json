@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "image-markup",
   "name": "Image Markup",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Inspect, zoom, and annotate images with pen, arrow, and box markups, then export a full-resolution PNG copy.",
   "author": "Vani",
   "homepage": "https://github.com/Nichengjin/vani-plugins",

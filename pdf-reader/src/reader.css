@@ -1,68 +1,666 @@
-* { box-sizing: border-box; }
-html, body { width: 100%; height: 100%; margin: 0; }
+:root {
+  --pdf-bg: var(--background, #f2f0ee);
+  --pdf-fg: var(--foreground, #23211f);
+  --pdf-fg-2: var(--foreground-secondary, #5c5854);
+  --pdf-muted: var(--muted, #7e7975);
+  --pdf-surface: var(--surface, #f8f6f5);
+  --pdf-surface-2: var(--surface-secondary, #f0eeec);
+  --pdf-surface-hover: var(--surface-hover, #e5e3e2);
+  --pdf-overlay: var(--overlay, #f8f6f5);
+  --pdf-overlay-fg: var(--overlay-foreground, #23211f);
+  --pdf-separator: var(--separator, #e6e4e3);
+  --pdf-border: var(--border, #d9d7d5);
+  --pdf-field-bg: var(--field-background, #f6f5f4);
+  --pdf-field-border: var(--field-border, #dad7d4);
+  --pdf-field-border-hover: var(--field-border-hover, #c5c2bf);
+  --pdf-field-border-focus: var(--field-border-focus, #aca9a6);
+  --pdf-accent: var(--accent, #3b342d);
+  --pdf-focus: var(--focus, #3b342d);
+  --pdf-scrollbar: var(--scrollbar, #c6c3c0);
+  --pdf-danger-soft: var(--danger-soft, rgba(255, 56, 60, 0.12));
+  --pdf-danger-fg: var(--danger-soft-foreground, #aa3934);
+  --pdf-radius-control: var(--radius-control, 6px);
+  --pdf-radius-card: var(--radius-card, 10px);
+  --pdf-duration-fast: var(--duration-fast, 120ms);
+  --pdf-shadow-modal: var(
+    --shadow-modal,
+    0 0 0 1px rgba(35, 33, 31, 0.08),
+    0 3px 3px -1.5px rgba(0, 0, 0, 0.06),
+    0 12px 24px -6px rgba(0, 0, 0, 0.06),
+    0 24px 48px -12px rgba(0, 0, 0, 0.06)
+  );
+}
+
+html.dark {
+  --pdf-bg: var(--background, #0f0d0b);
+  --pdf-fg: var(--foreground, #fcfcfc);
+  --pdf-fg-2: var(--foreground-secondary, #c2bfba);
+  --pdf-muted: var(--muted, #918f8b);
+  --pdf-surface: var(--surface, #181613);
+  --pdf-surface-2: var(--surface-secondary, #211f1c);
+  --pdf-surface-hover: var(--surface-hover, #272522);
+  --pdf-overlay: var(--overlay, #181613);
+  --pdf-overlay-fg: var(--overlay-foreground, #fcfcfc);
+  --pdf-separator: var(--separator, #2a2826);
+  --pdf-border: var(--border, #2f2d2b);
+  --pdf-field-bg: var(--field-background, #1c1a18);
+  --pdf-field-border: var(--field-border, #35322f);
+  --pdf-field-border-hover: var(--field-border-hover, #474441);
+  --pdf-field-border-focus: var(--field-border-focus, #5e5b59);
+  --pdf-accent: var(--accent, #dcd6d0);
+  --pdf-focus: var(--focus, #dcd6d0);
+  --pdf-scrollbar: var(--scrollbar, #3c3a37);
+  --pdf-danger-soft: var(--danger-soft, rgba(219, 59, 62, 0.15));
+  --pdf-danger-fg: var(--danger-soft-foreground, #eb7872);
+  --pdf-shadow-modal: var(
+    --shadow-modal,
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 4px 8px -2px rgba(0, 0, 0, 0.35),
+    0 16px 32px -8px rgba(0, 0, 0, 0.45)
+  );
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
 body {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: 42px minmax(0, 1fr);
   position: relative;
   overflow: hidden;
-  background: var(--background, Canvas);
-  color: var(--foreground, CanvasText);
-  font: 13px/1.4 var(--font-ui, system-ui), sans-serif;
+  background: var(--pdf-surface-2);
+  color: var(--pdf-fg);
+  font: 13px/1.4 var(--font-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui), sans-serif;
   font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
 }
-header, .pagination { display: flex; align-items: center; }
+
+/* ── Top Toolbar ────────────────────────────────────────────────────────── */
 header {
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 4px 12px;
-  padding: 5px clamp(6px, 2vw, 18px);
-  background: var(--surface, Canvas);
-  border-bottom: 1px solid var(--border, ButtonBorder);
-}
-.pagination { gap: 4px; }
-button, input, select { font: inherit; color: inherit; }
-button, #page, #zoom { min-height: 28px; border-radius: var(--radius-control, 5px); }
-button {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+  z-index: 20;
   display: grid;
-  place-items: center;
-  width: 30px;
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, auto) minmax(max-content, 1fr);
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding-inline: clamp(8px, 1.8vw, 14px);
+  background: var(--pdf-surface);
+  border-bottom: 1px solid var(--pdf-separator);
+  user-select: none;
+}
+
+.pagination {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+}
+
+.page-readout {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-inline: 2px;
+}
+
+.doc-title {
+  justify-self: center;
+  min-width: 0;
+  max-width: 100%;
+  padding-inline: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 450;
+  color: var(--pdf-muted);
+}
+
+.toolbar-right {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* ── Buttons & Page Input ───────────────────────────────────────────────── */
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  appearance: none;
   border: 0;
+  padding: 0;
   background: transparent;
   cursor: pointer;
+  transition:
+    background-color var(--pdf-duration-fast) ease,
+    color var(--pdf-duration-fast) ease,
+    border-color var(--pdf-duration-fast) ease,
+    opacity var(--pdf-duration-fast) ease;
 }
-button svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-button:not(:disabled):hover { background: var(--default, ButtonFace); }
-:disabled { opacity: .4; cursor: default; }
-#page, #zoom { border: 1px solid var(--field-border, ButtonBorder); background: var(--field-background, Field); }
-#page { width: 5ch; padding: 2px; text-align: center; }
-#zoom { max-width: 100%; padding-inline: 6px; }
-.slash { color: var(--muted, GrayText); }
-:focus-visible { outline: 2px solid var(--focus, Highlight); outline-offset: 1px; }
+
+button svg {
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--pdf-radius-control);
+  color: var(--pdf-fg-2);
+}
+
+.icon-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.icon-btn:not(:disabled):hover {
+  background: var(--pdf-surface-hover);
+  color: var(--pdf-fg);
+}
+
+.icon-btn:not(:disabled):active {
+  background: color-mix(in srgb, var(--pdf-fg) 11%, transparent);
+}
+
+:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+#page {
+  width: 4.5ch;
+  height: 26px;
+  padding: 0 4px;
+  border: 1px solid var(--pdf-field-border);
+  border-radius: var(--pdf-radius-control);
+  background: var(--pdf-field-bg);
+  color: var(--pdf-fg);
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  transition:
+    border-color var(--pdf-duration-fast) ease,
+    box-shadow var(--pdf-duration-fast) ease,
+    background-color var(--pdf-duration-fast) ease;
+}
+
+#page:not(:disabled):hover {
+  border-color: var(--pdf-field-border-hover);
+}
+
+#page:focus {
+  outline: none;
+  border-color: var(--pdf-field-border-focus);
+  box-shadow: 0 0 0 2.5px color-mix(in oklab, var(--pdf-focus) 20%, transparent);
+}
+
+.slash {
+  color: var(--pdf-muted);
+  opacity: 0.7;
+  font-size: 12px;
+}
+
+#count {
+  color: var(--pdf-muted);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  min-width: 1.2ch;
+}
+
+:focus-visible {
+  outline: 2px solid var(--pdf-focus);
+  outline-offset: 1px;
+}
+
+#page:focus-visible {
+  outline: none;
+}
+
+/* ── Custom Zoom Capsule & Popover ──────────────────────────────────────── */
+.zoom-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.zoom-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  padding: 2px;
+  background: var(--pdf-surface-2);
+  border: 1px solid color-mix(in srgb, var(--pdf-fg) 7%, transparent);
+  border-radius: calc(var(--pdf-radius-control) + 1px);
+}
+
+.zoom-step,
+.zoom-trigger {
+  height: 24px;
+  border-radius: max(3px, calc(var(--pdf-radius-control) - 1px));
+}
+
+.zoom-step {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  color: var(--pdf-fg-2);
+}
+
+.zoom-step svg {
+  width: 13px;
+  height: 13px;
+}
+
+.zoom-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--pdf-fg);
+  white-space: nowrap;
+}
+
+.zoom-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.zoom-chevron {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--pdf-muted);
+  transition: transform var(--pdf-duration-fast) ease, color var(--pdf-duration-fast) ease;
+}
+
+.zoom-trigger[aria-expanded='true'] .zoom-chevron {
+  transform: rotate(180deg);
+  color: var(--pdf-fg);
+}
+
+.zoom-step:not(:disabled):hover,
+.zoom-trigger:not(:disabled):hover,
+.zoom-trigger[aria-expanded='true'] {
+  background: var(--pdf-surface-hover);
+  color: var(--pdf-fg);
+}
+
+.zoom-step:not(:disabled):active,
+.zoom-trigger:not(:disabled):active {
+  background: color-mix(in srgb, var(--pdf-fg) 11%, transparent);
+}
+
+.zoom-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  inset-inline-end: 0;
+  z-index: 40;
+  min-width: 152px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--pdf-overlay);
+  color: var(--pdf-overlay-fg);
+  border: 1px solid var(--pdf-border);
+  border-radius: var(--pdf-radius-card);
+  box-shadow: var(--pdf-shadow-modal);
+  transform-origin: top right;
+  animation: pdf-popover-in 120ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.zoom-menu[hidden] {
+  display: none;
+}
+
+.zoom-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-radius: var(--pdf-radius-control);
+  font-size: 12.5px;
+  font-weight: 450;
+  font-variant-numeric: tabular-nums;
+  color: var(--pdf-fg-2);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.zoom-option:hover,
+.zoom-option:focus-visible {
+  background: var(--pdf-surface-hover);
+  color: var(--pdf-fg);
+  outline: none;
+}
+
+.zoom-option[aria-selected='true'] {
+  color: var(--pdf-fg);
+  font-weight: 550;
+}
+
+.zoom-check {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--pdf-accent);
+  opacity: 0;
+  transition: opacity var(--pdf-duration-fast) ease;
+}
+
+.zoom-option[aria-selected='true'] .zoom-check {
+  opacity: 1;
+}
+
+.zoom-divider {
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--pdf-separator);
+}
+
+@keyframes pdf-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Subtle Indeterminate Render Progress Bar ───────────────────────────── */
+.progress-track {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1px;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 180ms ease 0ms;
+}
+
+header[data-loading] .progress-track {
+  opacity: 1;
+  transition: opacity 150ms ease 80ms;
+}
+
+.progress-bar {
+  width: 38%;
+  height: 100%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pdf-accent) 70%, transparent);
+  transform: translateX(-100%);
+  animation: none;
+}
+
+header[data-loading] .progress-bar {
+  animation: pdf-progress-sweep 1.25s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes pdf-progress-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(365%);
+  }
+}
+
+/* ── Reading Stage & Paper Sheet ────────────────────────────────────────── */
 main {
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
+  min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
-  scrollbar-gutter: stable both-edges;
-  padding: clamp(8px, 2vw, 24px);
-  background: var(--surface-secondary, Canvas);
+  padding: clamp(10px, 2.5vw, 28px);
+  background: var(--pdf-surface-2);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--pdf-scrollbar) 72%, transparent) transparent;
 }
-main:focus-visible { outline-offset: -2px; }
+
+main:focus-visible {
+  outline-offset: -2px;
+}
+
+main::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+main::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--pdf-scrollbar) 72%, transparent);
+  background-clip: padding-box;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: var(--pdf-scrollbar);
+  background-clip: padding-box;
+}
+
+main::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 #paper {
   position: relative;
-  margin: 0 auto;
+  flex: none;
+  margin: auto;
   overflow: clip;
+  border-radius: 2px;
   --scale-round-x: 1px;
   --scale-round-y: 1px;
-  background: white;
-  box-shadow: 0 0 0 1px var(--border, ButtonBorder), 0 2px 5px #0001;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--foreground, #23211f) 9%, transparent),
+    0 2px 6px -1px rgb(0 0 0 / 0.06),
+    0 12px 28px -8px rgb(0 0 0 / 0.08);
+  transition: opacity 150ms ease;
 }
-canvas { display: block; width: 100%; height: 100%; }
+
+html.dark #paper {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 4px 12px -2px rgb(0 0 0 / 0.45),
+    0 20px 44px -12px rgb(0 0 0 / 0.55);
+}
+
+#paper[hidden] {
+  display: none;
+}
+
+#paper[data-busy] {
+  opacity: 0.72;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Crisp Vani selection highlight on white paper (light & dark modes) */
+.textLayer ::selection {
+  background: color-mix(in srgb, var(--accent, #3b342d) 20%, transparent);
+  color: transparent;
+}
+
+html.dark .textLayer ::selection {
+  background: color-mix(in srgb, var(--chart-4, #d99b42) 32%, transparent);
+  color: transparent;
+}
+
+.textLayer br::selection {
+  background: transparent;
+}
+
+/* ── Centered Status Card ───────────────────────────────────────────────── */
 #status:not(.visually-hidden) {
   grid-row: 2;
-  position: absolute;
-  inset-inline: 12px;
-  top: 24px;
+  grid-column: 1;
+  place-self: center;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: min(300px, calc(100% - 32px));
   margin: 0;
+  padding: 20px 24px;
+  border-radius: var(--pdf-radius-card);
+  background: var(--pdf-surface);
+  border: 1px solid var(--pdf-border);
+  box-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.06);
+  color: var(--pdf-fg-2);
+  font-size: 13px;
+  line-height: 1.5;
   text-align: center;
 }
-.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+html.dark #status:not(.visually-hidden) {
+  box-shadow: 0 4px 16px -4px rgb(0 0 0 / 0.4);
+}
+
+.status-icon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--pdf-surface-2);
+  color: var(--pdf-muted);
+}
+
+.status-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#status[data-tone='error'] .status-icon {
+  background: var(--pdf-danger-soft);
+  color: var(--pdf-danger-fg);
+}
+
+.status-icon .spin {
+  animation: pdf-spin 900ms linear infinite;
+}
+
+@keyframes pdf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-text {
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ── Narrow Window Adaptation ───────────────────────────────────────────── */
+@media (max-width: 559px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .doc-title {
+    display: none;
+  }
+}
+
+@media (max-width: 440px) {
+  .zoom-label {
+    max-width: 96px;
+  }
+
+  .zoom-trigger {
+    padding: 0 5px 0 6px;
+  }
+
+  #page {
+    width: 4ch;
+  }
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .zoom-menu,
+  .progress-bar,
+  .status-icon .spin {
+    animation: none;
+  }
+
+  .progress-bar {
+    width: 100%;
+    transform: none;
+    opacity: 0.45;
+  }
+
+  button,
+  #page,
+  #paper,
+  .zoom-chevron,
+  .zoom-check,
+  .progress-track {
+    transition: none;
+  }
+}

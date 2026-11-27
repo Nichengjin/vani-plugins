@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "pdf-reader",
   "name": "PDF Reader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Read multi-page PDF documents completely offline with on-demand byte streaming, zoom, and text selection.",
   "author": "Vani",
   "homepage": "https://github.com/Nichengjin/vani-plugins",

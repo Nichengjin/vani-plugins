@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "csv-table-viewer",
   "name": "CSV Table",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Explore CSV files as interactive, sortable, and filterable tables with automatic numeric sorting.",
   "author": "Vani",
   "homepage": "https://github.com/Nichengjin/vani-plugins",

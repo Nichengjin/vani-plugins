@@ -67,10 +67,10 @@ Vani 已内置本仓库作为官方源 **Vani Official**：
 
 | ID | 名称 | 版本 | 扩展点 | 声明权限 | 说明 |
 | --- | --- | --- | --- | --- | --- |
-| `csv-table-viewer` | CSV Table | `1.0.0` | `file.viewer` (`.csv`) | `file.active.read` | 将 CSV 渲染为可筛选、可按列升降序排序（含数字排序）的表格视图。 |
-| `image-markup` | Image Markup | `1.0.0` | `file.viewer` (`png`, `jpeg`, `jpg`, `webp`, `avif`, `bmp`) | `file.active.readBytes`, `file.export` | 查看、缩放并用画笔／箭头／方框标注图片，支持选色与撤销／重做，经宿主另存原分辨率 PNG 副本（不覆盖原图）。 |
-| `pdf-reader` | PDF Reader | `1.0.0` | `file.viewer` (`.pdf`) | `file.active.readBytes` | 离线多页 PDF 阅读器，内置固定版本 PDF.js 6.5.438、CMap、标准字体与纯 JS 解码器，支持按需字节分段读取、翻页／跳页、缩放、适合宽度／整页与文字选中；不支持输入密码打开加密 PDF。 |
-| `workspace-files-summary` | Workspace Files Summary | `1.0.0` | `workbench.pane` (`summary`) | `workspace.files.read`, `ui.navigate` | 在右栏 Workbench 新增 Summary 面板，按扩展名分组列出工作区文件并支持点击跳转打开。 |
+| `csv-table-viewer` | CSV Table | `1.1.0` | `file.viewer` (`.csv`) | `file.active.read` | 将 CSV 渲染为带有筛选计数、吸顶表头、排序指示箭头与数字右对齐的表格视图。 |
+| `image-markup` | Image Markup | `1.1.0` | `file.viewer` (`png`, `jpeg`, `jpg`, `webp`, `avif`, `bmp`) | `file.active.readBytes`, `file.export` | 查看、缩放并用矢量图标工具栏（画笔／箭头／方框、精选色板、三档线宽、清空与撤销／重做）标注图片，经宿主另存原分辨率 PNG 副本（不覆盖原图）。 |
+| `pdf-reader` | PDF Reader | `1.1.0` | `file.viewer` (`.pdf`) | `file.active.readBytes` | 离线多页 PDF 阅读器，内置固定版本 PDF.js 6.5.438、CMap、标准字体与纯 JS 解码器，支持按需字节分段读取、翻页／跳页、自绘缩放菜单、适合宽度／整页与文字选中；不支持输入密码打开加密 PDF。 |
+| `workspace-files-summary` | Workspace Files Summary | `1.1.0` | `workbench.pane` (`summary`) | `workspace.files.read`, `ui.navigate` | 在右栏 Workbench 新增 Summary 面板，带文件名筛选、后缀分布比例条与可折叠分组列表，支持点击跳转打开。 |
 
 ## 导入与打包
 
