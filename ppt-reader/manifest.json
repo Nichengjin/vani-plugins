@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "ppt-reader",
+  "name": "PPT Reader",
+  "version": "1.0.0",
+  "description": "View PowerPoint (.pptx) presentations completely offline with slide thumbnails, proportional stage rendering, speaker notes, and zoom controls.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-deck-light.png",
+        "dark": "media/screenshot-deck-dark.png"
+      },
+      "caption": "Proportional slide stage with thumbnail strip and keyboard navigation",
+      "alt": "PPT Reader displaying a presentation cover slide with left slide thumbnail strip"
+    },
+    {
+      "src": {
+        "light": "media/screenshot-notes-light.png",
+        "dark": "media/screenshot-notes-dark.png"
+      },
+      "caption": "Inspect slides with embedded diagrams, tables, and speaker notes offline",
+      "alt": "PPT Reader showing an architecture slide with embedded image, table, and speaker notes drawer"
+    }
+  ],
+  "readme": "README.md",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/index.js",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".pptx"] } }],
+  "capabilities": ["file.active.readBytes"]
+}

@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "excel-reader",
+  "name": "Excel Reader",
+  "version": "1.0.0",
+  "description": "Inspect Excel workbooks (.xlsx, .xls, .ods) offline with multi-sheet tabs, formula inspection, search filtering, and column sorting.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-workbook-light.png",
+        "dark": "media/screenshot-workbook-dark.png"
+      },
+      "caption": "Inspect multi-sheet workbooks with formatted cells, formula bar, and sticky headers",
+      "alt": "Excel Reader displaying a formatted financial workbook with active formula bar and sheet tabs"
+    },
+    {
+      "src": {
+        "light": "media/screenshot-filter-light.png",
+        "dark": "media/screenshot-filter-dark.png"
+      },
+      "caption": "Filter rows, sort columns numerically, and switch sheets cleanly",
+      "alt": "Excel Reader filtered and sorted by numeric column with active sort pill"
+    }
+  ],
+  "readme": "README.md",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/index.js",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".xlsx", ".xls", ".ods"] } }],
+  "capabilities": ["file.active.readBytes"]
+}

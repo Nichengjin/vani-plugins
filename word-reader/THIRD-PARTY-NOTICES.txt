@@ -1,0 +1,6 @@
+Third-Party Notices for word-reader
+
+This plugin vendors the offline browser build of mammoth.js:
+- mammoth (1.11.0)
+
+License: BSD-2-Clause (see vendor/licenses/mammoth-BSD-2-Clause.txt).

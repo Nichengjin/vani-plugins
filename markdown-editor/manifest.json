@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "markdown-editor",
+  "name": "Markdown Editor",
+  "version": "1.0.0",
+  "description": "Edit Markdown files inline with a Tiptap rich-text editor, synchronized source view, and safe conflict-checked saving.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-rich-light.png",
+        "dark": "media/screenshot-rich-dark.png"
+      },
+      "caption": "WYSIWYG Tiptap Markdown editor with headings, task lists, tables, and live save status",
+      "alt": "Markdown Editor displaying formatted rich text with formatting toolbar and status bar"
+    },
+    {
+      "src": {
+        "light": "media/screenshot-source-light.png",
+        "dark": "media/screenshot-source-dark.png"
+      },
+      "caption": "Switch seamlessly between Rich and Markdown Source modes with Cmd/Ctrl+S saving",
+      "alt": "Markdown Editor in synchronized Markdown source mode with line numbers and save control"
+    }
+  ],
+  "readme": "README.md",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/index.js",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".md", ".markdown", ".mdx"] } }],
+  "capabilities": ["file.active.read", "file.active.write"]
+}

@@ -1,0 +1,11 @@
+Third-Party Notices for markdown-editor
+
+This plugin vendors an offline browser bundle built from Tiptap v3 packages:
+- @tiptap/core (3.27.4)
+- @tiptap/starter-kit (3.27.4)
+- @tiptap/markdown (3.27.4)
+- @tiptap/extension-list (3.27.4)
+- @tiptap/extension-table (3.27.4)
+- @tiptap/extension-placeholder (3.27.4)
+
+License: MIT (see vendor/licenses/tiptap-MIT.txt).

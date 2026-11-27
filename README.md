@@ -18,8 +18,12 @@ vani-plugins/
 │   ├── build-feed.mjs             # 零依赖打包脚本：校验 manifest、打确定性 ZIP、算 sha256 并生成 feed.json
 │   └── prepare-pdf-reader.py      # 校验并重建 pdf-reader/vendor/ 的离线 PDF.js 依赖
 ├── csv-table-viewer/              # CSV 表格查看器（file.viewer）
+├── excel-reader/                  # Excel / ODS 离线表格阅读器（file.viewer）
 ├── image-markup/                  # 图片缩放与标注查看器（file.viewer）
+├── markdown-editor/               # Markdown 所见即所得 / 源码编辑器（file.viewer）
 ├── pdf-reader/                    # 离线 PDF 阅读器（file.viewer）
+├── ppt-reader/                    # PowerPoint (.pptx) 离线演示文稿阅读器（file.viewer）
+├── word-reader/                   # Word (.docx) 离线文档阅读器（file.viewer）
 └── workspace-files-summary/       # 工作区文件按后缀分组摘要面板（workbench.pane）
 ```
 
@@ -68,8 +72,12 @@ Vani 已内置本仓库作为官方源 **Vani Official**：
 | ID | 名称 | 版本 | 扩展点 | 声明权限 | 说明 |
 | --- | --- | --- | --- | --- | --- |
 | `csv-table-viewer` | CSV Table | `1.1.0` | `file.viewer` (`.csv`) | `file.active.read` | 将 CSV 渲染为带有筛选计数、吸顶表头、排序指示箭头与数字右对齐的表格视图。 |
+| `excel-reader` | Excel Reader | `1.0.0` | `file.viewer` (`.xlsx`, `.xls`, `.ods`) | `file.active.readBytes` | 离线多工作表表格阅读器，内置 SheetJS 0.18.5，支持工作表标签切换、公式栏检查、合并单元格还原、搜索过滤与列排序。 |
 | `image-markup` | Image Markup | `1.1.0` | `file.viewer` (`png`, `jpeg`, `jpg`, `webp`, `avif`, `bmp`) | `file.active.readBytes`, `file.export` | 查看、缩放并用矢量图标工具栏（画笔／箭头／方框、精选色板、三档线宽、清空与撤销／重做）标注图片，经宿主另存原分辨率 PNG 副本（不覆盖原图）。 |
+| `markdown-editor` | Markdown Editor | `1.0.0` | `file.viewer` (`.md`, `.markdown`, `.mdx`) | `file.active.read`, `file.active.write` | 内置 Tiptap v3 的离线 Markdown 编辑器，支持富文本与源码双模式同步切换、快捷键格式化、`⌘S` 版本校验原子写回原文件以及外部改动冲突提示。 |
 | `pdf-reader` | PDF Reader | `1.1.0` | `file.viewer` (`.pdf`) | `file.active.readBytes` | 离线多页 PDF 阅读器，内置固定版本 PDF.js 6.5.438、CMap、标准字体与纯 JS 解码器，支持按需字节分段读取、翻页／跳页、自绘缩放菜单、适合宽度／整页与文字选中；不支持输入密码打开加密 PDF。 |
+| `ppt-reader` | PowerPoint Reader | `1.0.0` | `file.viewer` (`.pptx`) | `file.active.readBytes` | 离线 PowerPoint 阅读器，内置 JSZip 与 OOXML 解析器，支持缩略图导航、等比例幻灯片舞台、缩放控制、矢量形状／图片／表格渲染与可切换的演讲者备注栏。 |
+| `word-reader` | Word Reader | `1.0.0` | `file.viewer` (`.docx`) | `file.active.readBytes` | 离线 Word (`.docx`) 阅读器，内置 Mammoth，支持文档大纲侧边栏、页内查找高亮（`⌘F`）、纸张视图缩放与内嵌图片渲染。 |
 | `workspace-files-summary` | Workspace Files Summary | `1.1.0` | `workbench.pane` (`summary`) | `workspace.files.read`, `ui.navigate` | 在右栏 Workbench 新增 Summary 面板，带文件名筛选、后缀分布比例条与可折叠分组列表，支持点击跳转打开。 |
 
 ## 导入与打包

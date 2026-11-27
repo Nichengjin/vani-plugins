@@ -1,0 +1,6 @@
+Third-Party Notices for excel-reader
+
+This plugin vendors an offline browser bundle built from SheetJS Community Edition:
+- xlsx (0.18.5)
+
+License: Apache-2.0 (see vendor/licenses/xlsx-Apache-2.0.txt).

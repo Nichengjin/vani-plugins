@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "word-reader",
+  "name": "Word Reader",
+  "version": "1.0.0",
+  "description": "Read Word (.docx) documents completely offline with a document outline, in-document search, and embedded images.",
+  "author": "Vani",
+  "homepage": "https://github.com/Nichengjin/vani-plugins",
+  "icon": "media/icon.png",
+  "cover": {
+    "light": "media/cover-light.png",
+    "dark": "media/cover-dark.png"
+  },
+  "screenshots": [
+    {
+      "src": {
+        "light": "media/screenshot-reading-light.png",
+        "dark": "media/screenshot-reading-dark.png"
+      },
+      "caption": "Clean editorial reading layout with automatic document outline sidebar",
+      "alt": "Word Reader displaying a formatted .docx document with left heading outline and tables"
+    },
+    {
+      "src": {
+        "light": "media/screenshot-search-light.png",
+        "dark": "media/screenshot-search-dark.png"
+      },
+      "caption": "Search across headings, paragraphs, and tables with live match navigation",
+      "alt": "Word Reader highlighting search matches inside the document with match counter and zoom controls"
+    }
+  ],
+  "readme": "README.md",
+  "vaniApiVersion": "1",
+  "runtime": "ui",
+  "entry": "src/index.js",
+  "overrides": [{ "slot": "file.viewer", "match": { "extensions": [".docx"] } }],
+  "capabilities": ["file.active.readBytes"]
+}

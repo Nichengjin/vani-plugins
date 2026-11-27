@@ -1,0 +1,6 @@
+Third-Party Notices for ppt-reader
+
+This plugin vendors the offline browser build of JSZip:
+- jszip (3.10.1)
+
+License: MIT or GPLv3 (see vendor/licenses/jszip-MIT-GPLv3.txt).
